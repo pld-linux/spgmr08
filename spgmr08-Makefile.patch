@@ -1,0 +1,29 @@
+--- spgmr08-0.12/Makefile~orig	2003-12-17 22:01:40.000000000 +0100
++++ spgmr08-0.12/Makefile	2008-12-21 01:19:31.000000000 +0100
+@@ -53,7 +53,7 @@
+ # Compiler flags
+ #
+ 
+-CFLAGS =  -Wall -g -O2 -funsigned-char
++CFLAGS =  -Wall $(OPTCFLAGS) -funsigned-char
+ # -mpentiumpro
+ 
+ # compile in debugging code
+@@ -79,7 +79,7 @@
+ CFLAGS += -Wno-unused
+ # LDFLAGS += -static
+ 
+-LDLIBS = -lreadline -lhistory -lncurses
++LDLIBS = -lreadline
+ 
+ OBJS=main.o basename.o args.o lin_serial.o s1utils.o seccodes.o mongp32.o \
+ 	cli.o scan.o err.o rcfile.o utils.o ops.o ops_gp32.o jb8_driver.o
+@@ -112,7 +112,7 @@
+ all: $(TARGET) grammar.txt $(AS19S)
+ 
+ $(TARGET): $(OBJS)
+-	$(CC) $(LDFLAGS) $(OBJS) -o $@ $(LDLIBS)
++	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS) -o $@ $(LDLIBS)
+ 
+ $(LIBDIR)/program_ab32.s19: program_ab32.s19
+ 	cp $< $@
