@@ -1,0 +1,16 @@
+--- spgmr08-0.12/mongp32.c	2003-12-16 22:47:56.000000000 +0100
++++ spgmr08-0.12.working/mongp32.c	2008-12-21 00:52:50.000000000 +0100
+@@ -49,9 +49,12 @@
+ 	char bytes[4];
+ } eu;
+ 
+-#ifdef __LITTLE_ENDIAN
++#if __BYTE_ORDER == __LITTLE_ENDIAN
+ #define hbyte eu.bytes[1]
+ #define lbyte eu.bytes[0]
++#else
++#define hbyte eu.bytes[2]
++#define lbyte eu.bytes[3]
+ #endif
+ 
+ // need these functions:
